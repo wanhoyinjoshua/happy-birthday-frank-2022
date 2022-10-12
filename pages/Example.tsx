@@ -60,6 +60,10 @@ export default function Example (){
           var start = 0;
           var end = parseInt(years);
           setTimevector(Array(end - start + 1).fill(start).map((x, y) => x + y));
+          function myFunction(item) {
+            Math.round(item)
+          }
+          
           setMoneyvector(result.data)
 
           
