@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model User {
+  id            String       @default(cuid()) @id
+  
+  email         String?   @unique
+  history       String?
+  username      String
+  member        Int
+  History       History[]
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  
+
+}
+
+model History {
+  id            String       @default(cuid()) @id
+  
+  author        User @relation(fields: [authorId], references: [id])
+  authorId      String
+  content       String
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+
+}
+

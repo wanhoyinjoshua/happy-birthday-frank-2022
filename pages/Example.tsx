@@ -1,9 +1,10 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import axios from "axios"
 import "chart.js/auto"
 import {Line} from 'react-chartjs-2';
 import { ChartData } from 'chart.js';
-
+import Link from "next/link"
+import { useUser, getSession } from '@auth0/nextjs-auth0';
 const data:ChartData<"line", number[], string> = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
@@ -40,6 +41,25 @@ export default function Example (){
     const[data,setData]=useState<any>("nothing")
     const[timevector,setTimevector]=useState([])
     const[moneyvector,setMoneyvector]=useState([])
+    const { user } = useUser();
+    useEffect(() => {
+
+      if(user){
+        console.log(user.sub)
+        fetch(`/api/checkuser/${user.sub}`)
+        .then(response => response.json())
+        // 4. Setting *dogImage* to the image url that we received from the response above
+        .then(data1 => console.log(data1))
+
+          
+      }else{
+        console.log("getout")
+
+  
+      }
+          
+  },[user])
+
     async function calculate (){
         var bodyFormData = new FormData();
         bodyFormData.append('income', income);
@@ -67,7 +87,10 @@ export default function Example (){
           setMoneyvector(result.data)
 
           
-          setData(result)
+         setData(result)
+         const save = await axios.post(`/api/save/${user.sub}`, {income:income,years:years,valuedecrease:valuedecrease,valueincrease:valueincrease} )
+
+
   
   }
    
@@ -102,6 +125,8 @@ export default function Example (){
  
     return (
         <div>
+          <Link href="/History">See History</Link>
+           <Link href="/api/auth/logout">Logout</Link>
         <h2>Line Example</h2>
         <Line
           data={graphdata}
