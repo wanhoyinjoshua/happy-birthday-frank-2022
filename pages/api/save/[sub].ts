@@ -14,7 +14,7 @@ export default async function checkUser(
     console.log(req.body)
     
     
-   const save= await prisma.History.create({
+   const save= await prisma.history.create({
        
     data:{
 
