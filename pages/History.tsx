@@ -37,7 +37,7 @@ const History = () => {
   </tr>{console.log(history)}
         {history&&history.map(item=>
         <tr>
-           {JSON.parse(item.content).map(list=><th>{list}</th>)}
+           {JSON.parse(item.content).map(list=><th key={list}>{list}</th>)}
             <th>{item.createdAt}</th>
         </tr>
         
