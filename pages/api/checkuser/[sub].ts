@@ -32,7 +32,7 @@ export default async function checkUser(
       else{
 
         const newUser=await prisma.user.create(
-          {
+          { 
             
               data:{
                   id: session?.user.sub,
