@@ -38,7 +38,7 @@ export default async function checkUser(
                   id: session?.user.sub,
                   username:session?.user.email,
                   member:0,
-                  stripecustomerid:"",
+                  stripecustomerid:'',
 
                   
                  
