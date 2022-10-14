@@ -127,38 +127,58 @@ export default function Example (){
 
  
     return (
+      <>
+  
+
+
+      
         <div>
           <div>
 
           </div>
-          
-          <Link href="/History">See History</Link>
-           <Link href="/api/auth/logout">Logout</Link>
-           <Link href="/subscription/dev">Subscriptions</Link>
-           {stripeid!=`""`&&    <form action="/api/create-portal-session" method="POST">
+          <div className="  inline-flex items-center -space-x-px rounded-md text-xs">
+  
+  <button
+    className="rounded-l-md border px-5 py-3 font-medium hover:z-10 hover:bg-gray-50 focus:z-10 focus:border-indigo-600 focus:outline-none active:opacity-75"
+    type="button"
+  >
+    <Link href="/History">See History</Link>
+  </button>
+
+  <button
+    className="border px-5 py-3 font-medium hover:z-10 hover:bg-gray-50 focus:z-10 focus:border-indigo-600 focus:outline-none active:opacity-75"
+    type="button"
+  >
+   <Link href="/subscription/dev">Subscriptions</Link>
+  </button>
+
+  <button
+    className="bg-red-200 rounded-r-md border px-5 py-3 font-medium hover:z-10 hover:bg-red-50 focus:z-10 focus:border-indigo-600 focus:outline-none active:opacity-75"
+    type="button"
+  >
+    <Link href="/api/auth/logout">Logout</Link>
+  </button>
+</div>
+{stripeid!=`""`&&    <form action="/api/create-portal-session" method="POST">
         <input
           type="hidden"
           id="session-id"
           name="session_id"
           
         />
-        <button id="checkout-and-portal-button" type="submit">
+        <button className="bg-orange-200 rounded-r-md border px-5 py-3 font-medium hover:z-10 hover:bg-orange-100 focus:z-10 focus:border-indigo-600 focus:outline-none active:opacity-75" id="checkout-and-portal-button" type="submit">
           Manage your billing information
         </button>
       </form>}
-        
-        <h2>Line Example</h2>
-        <Line
-          data={graphdata}
-          width={400}
-          height={400}
-        />
 
+<br></br>
+<br></br>
 
-        
+              
     <div >
-    <label >income:</label>
-      <input type="number" required value={income} onChange={(e)=>{setIncome(e.target.value)}} />
+      <div>
+      <label className="block text-xs font-medium text-gray-700">income:</label>
+      <input className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm" type="number" required value={income} onChange={(e)=>{setIncome(e.target.value)}} />
       
       </div>
       <div >
@@ -174,15 +194,34 @@ export default function Example (){
       <div >
     <label >Discount rate per annum (%):</label>
       <input type="number" required value={valuedecrease} onChange={(e)=>{setDecrease(e.target.value)}} />
+          
+    <button className="rounded-l-md border px-5 py-3 font-medium hover:z-10 hover:bg-gray-50 focus:z-10 focus:border-indigo-600 focus:outline-none active:opacity-75" onClick={calculate}>Calculate</button>
       
       </div>
-     
-    <button onClick={calculate}>Calculate</button>
+
+      </div>
+        <br>
+        </br>
+        <br>
+        </br>
+        <h2>Graph</h2>
+        <div className='max-w-screen-md'>
+        <Line
+          data={graphdata}
+          width={400}
+          height={400}
+        />
+        </div>
+
       
 
-      <input  type="submit" value="Submit Assessment Form" ></input>
-     
+
+
+ 
+ 
+
       </div>
+      </>
     );
   
 };

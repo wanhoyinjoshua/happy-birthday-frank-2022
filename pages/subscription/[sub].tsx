@@ -1,29 +1,62 @@
 import React, { useState, useEffect } from 'react';
 import { useUser, getSession } from '@auth0/nextjs-auth0';
 import { userAgent } from 'next/server';
-
+import Link from "next/link"
 const ProductDisplay = () => (
   <section>
-    <div className="product">
-      
-      <div className="description">
-        <h3>Starter plan</h3>
-        <h5>$20.00 / month</h5>
-      </div>
-    </div>
-    <form action="/api/create-checkout-session" method="POST">
+      <button
+    className="rounded-l-md border px-5 py-3 font-medium hover:z-10 hover:bg-gray-50 focus:z-10 focus:border-indigo-600 focus:outline-none active:opacity-75"
+    type="button"
+  >
+    <Link href="/Example">Back to dashboard</Link>
+  </button>
+    <div className="relative rounded-lg border border-gray-200 p-8 text-center">
+  <h2 className="text-2xl font-medium">Basic plan</h2>
+
+  <p className="mt-4 text-sm text-gray-500">
+    It includes bbablabl ,, 5 AUD /month
+  </p>
+
+  <a
+    href=""
+    className="mt-8 inline-flex items-center rounded-lg bg-blue-600 px-5 py-3 font-medium text-white hover:bg-blue-500"
+  >
+     <form action="/api/create-checkout-session" method="POST">
       {/* Add a hidden field with the lookup_key of your Price */}
       <input type="hidden" name="lookup_key" value="frankbasic" />
       <button id="checkout-and-portal-button" type="submit">
         Checkout
       </button>
     </form>
+
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      className="ml-3 h-4 w-4 flex-shrink-0"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M14 5l7 7m0 0l-7 7m7-7H3"
+      />
+    </svg>
+  </a>
+</div>
+
+   
   </section>
 );
 
 const SuccessDisplay = ({ sessionId }) => {
   return (
+    <>
+
+
     <section>
+      
       <div className="product Box-root">
        
         <div className="description Box-root">
@@ -37,11 +70,20 @@ const SuccessDisplay = ({ sessionId }) => {
           name="session_id"
           
         />
-        <button id="checkout-and-portal-button" type="submit">
+           <button
+
+className="bg-blue-500 rounded-l-md border px-5 py-3 font-medium hover:z-10 hover:bg-gray-50 focus:z-10 focus:border-indigo-600 focus:outline-none active:opacity-75" id="checkout-and-portal-button"
+    
+    type="button"
+  >
+    <Link href="/Example">Back to dashboard</Link>
+  </button>
+        <button className="rounded-l-md border px-5 py-3 font-medium hover:z-10 hover:bg-gray-50 focus:z-10 focus:border-indigo-600 focus:outline-none active:opacity-75" id="checkout-and-portal-button" type="submit">
           Manage your billing information
         </button>
       </form>
     </section>
+    </>
   );
 };
 
