@@ -41,6 +41,7 @@ export default function Example (){
     const[data,setData]=useState<any>("nothing")
     const[timevector,setTimevector]=useState([])
     const[moneyvector,setMoneyvector]=useState([])
+    
     const { user } = useUser();
     useEffect(() => {
 
@@ -127,6 +128,18 @@ export default function Example (){
         <div>
           <Link href="/History">See History</Link>
            <Link href="/api/auth/logout">Logout</Link>
+           <Link href="/subscription/dev">Subscriptions</Link>
+           <form action="/api/create-portal-session" method="POST">
+        <input
+          type="hidden"
+          id="session-id"
+          name="session_id"
+          
+        />
+        <button id="checkout-and-portal-button" type="submit">
+          Manage your billing information
+        </button>
+      </form>
         <h2>Line Example</h2>
         <Line
           data={graphdata}

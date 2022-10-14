@@ -26,6 +26,18 @@ const History = () => {
     <div>
         <Link href="/Example">Compute</Link>
         <Link href="/api/auth/logout">Logout</Link>
+           <Link href="/subscription/dev">Subscriptions</Link>
+           <form action="/api/create-portal-session" method="POST">
+        <input
+          type="hidden"
+          id="session-id"
+          name="session_id"
+          
+        />
+        <button id="checkout-and-portal-button" type="submit">
+          Manage your billing information
+        </button>
+      </form>
         <table>
             <tbody>
         <tr>
