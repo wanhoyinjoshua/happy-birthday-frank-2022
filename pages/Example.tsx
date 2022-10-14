@@ -41,16 +41,18 @@ export default function Example (){
     const[data,setData]=useState<any>("nothing")
     const[timevector,setTimevector]=useState([])
     const[moneyvector,setMoneyvector]=useState([])
-    
+    const [stripeid,setStripeid]=useState("")
     const { user } = useUser();
     useEffect(() => {
 
       if(user){
-        console.log(user.sub)
+        console.log(JSON.stringify(user.sub))
+        console.log(stripeid)
         fetch(`/api/checkuser/${user.sub}`)
         .then(response => response.json())
         // 4. Setting *dogImage* to the image url that we received from the response above
-        .then(data1 => console.log(data1))
+        .then(data1 => data1.user)
+        .then (data=>setStripeid(JSON.stringify(data.stripecustomerid)))
 
           
       }else{
@@ -126,10 +128,14 @@ export default function Example (){
  
     return (
         <div>
+          <div>
+
+          </div>
+          
           <Link href="/History">See History</Link>
            <Link href="/api/auth/logout">Logout</Link>
            <Link href="/subscription/dev">Subscriptions</Link>
-           <form action="/api/create-portal-session" method="POST">
+           {stripeid!=`""`&&    <form action="/api/create-portal-session" method="POST">
         <input
           type="hidden"
           id="session-id"
@@ -139,7 +145,8 @@ export default function Example (){
         <button id="checkout-and-portal-button" type="submit">
           Manage your billing information
         </button>
-      </form>
+      </form>}
+        
         <h2>Line Example</h2>
         <Line
           data={graphdata}
