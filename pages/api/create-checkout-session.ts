@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import getStripe from "../../lib/get-stripejs"
-import checkstripeUser from "./checkstripeuser/index"
+
 const stripe = require('stripe')('sk_test_51LhnzvL0LOsjH7ujdI5lAOKAF4CER1vuGYWOrwdX2jGBkkuJq3w5uqXrq4oA6oB8eSewV3bD59BvN2rZa1FMwcvt00Ht7uWFjv');
 
 const YOUR_DOMAIN= "http://localhost:3000/subscription/84848"||"https://happy-birthday-frank-2022.vercel.app/subscription/84848"
